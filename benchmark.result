@@ -1,0 +1,27 @@
+rev_rec_nlist : 1 + l : &mut (NList[None=0(), Some=8(Box(0, NListNode{value:Lit, next:NList}))], NList[None=-0(), Some=-0(Box(0, NListNode{value:Lit, next:NList}))]) + r : &mut (NList[None=-0(), Some=-0(Box(0, NListNode{value:Lit, next:NList}))], NList[None=-0(), Some=-0(Box(-0, NListNode{value:Lit, next:NList}))]) -> 0, ()
+sum_rec_nlist : 1 + l : & NList[None=0(), Some=6(Box(0, NListNode{value:Lit, next:NList}))] -> Lit
+add : 1 + t : &mut (Tree[Leaf=0(), Node=10(Lit, Box(Tree), Box(Tree))], Tree[Leaf=-0(), Node=-0(Lit, Box(Tree), Box(Tree))]) + x : Lit -> 0, ()
+find : 1 + t : & Tree[Leaf=0(), Node=8(Lit, Box(Tree), Box(Tree))] + x : Lit -> Lit
+max : 1 + t : & Tree[Leaf=0(), Node=5(Lit, Box(Tree), Box(Tree))] + d : Lit -> Lit
+min : 1 + t : & Tree[Leaf=0(), Node=5(Lit, Box(Tree), Box(Tree))] + d : Lit -> Lit
+dup : 1 + l : &mut (List[Nil=0(), Cons=11(Lit, Box(List))], List[Nil=-0(), Cons=-0(Lit, Box(List))]) -> 0, ()
+dup2 : 2 + l : &mut (List[Nil=0(), Cons=33(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+end_c : 0 + l : &mut (List[Nil=2(), Cons=3(Lit, Box(List))], List[Nil=-0(), Cons=-0(Lit, Box(List))]) + out : &mut (&mut (List[Nil=0(), Cons=0(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]), &mut (List[Nil=-0(), Cons=-0(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))])) -> 0, ()
+concat : 4 + l1 : &mut (List[Nil=2(), Cons=3(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) + l2 : &mut (List[Nil=0(), Cons=0(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+end_m : 0 + l : &mut (List[Nil=1(), Cons=3(Lit, Box(List))], List[Nil=-0(), Cons=-0(Lit, Box(List))]) -> &mut (List[Nil=0(), Cons=0(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))])
+append : 4 + l : &mut (List[Nil=1(), Cons=3(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) + x : Lit -> 0, ()
+rev_loop : 0 + l : &mut (List[Nil=1(), Cons=9(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+rev_rec : 1 + l : &mut (List[Nil=0(), Cons=9(Lit, Box(List))], List[Nil=-0(), Cons=-0(Lit, Box(List))]) + r : &mut (List[Nil=-0(), Cons=0(Lit, Box(List))], List[Nil=-0(), Cons=-0(Lit, Box(List))]) -> 0, ()
+rev : 4 + l : &mut (List[Nil=0(), Cons=9(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+rev2 : 8 + l : &mut (List[Nil=-0(), Cons=18(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+reborrow_m : 16 + l : &mut (List[Nil=-0(), Cons=36(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+record : 9 + x : &mut (0, Record{l:List[Nil=-0(), Cons=18(Lit, Box(List))], t:Tree[Leaf=0(), Node=5(Lit, Box(Tree), Box(Tree))]}, 0, Record{l:List[Nil=0(), Cons=0(Lit, Box(List))], t:Tree[Leaf=0(), Node=0(Lit, Box(Tree), Box(Tree))]}) -> 0, ()
+nested_m_m : 8 + l : &mut (&mut (List[Nil=-0(), Cons=18(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]), &mut (List[Nil=-0(), Cons=-0(Lit, Box(List))], List[Nil=-0(), Cons=-0(Lit, Box(List))])) -> 0, ()
+tuple : 9 + x : &mut (0, (List[Nil=-0(), Cons=18(Lit, Box(List))], Tree[Leaf=0(), Node=5(Lit, Box(Tree), Box(Tree))]), 0, (List[Nil=0(), Cons=0(Lit, Box(List))], Tree[Leaf=0(), Node=0(Lit, Box(Tree), Box(Tree))])) -> 0, ()
+sum_loop : 0 + l : & List[Nil=1(), Cons=6(Lit, Box(List))] -> Lit
+sum_rec : 1 + l : & List[Nil=0(), Cons=6(Lit, Box(List))] -> Lit
+sum2 : 1 + l : & List[Nil=1(), Cons=12(Lit, Box(List))] -> Lit
+nested_m_s : 1 + l : &mut (& List[Nil=1(), Cons=12(Lit, Box(List))], & List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+reborrow_s : 2 + l : & List[Nil=2(), Cons=24(Lit, Box(List))] -> 0, ()
+nested_s_s : 1 + l : & & List[Nil=1(), Cons=12(Lit, Box(List))] -> 0, ()
+main : 0 -> 0, ()

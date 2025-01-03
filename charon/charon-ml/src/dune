@@ -1,0 +1,61 @@
+(library
+ (name charon) ;; The name as used in the project
+ (public_name charon) ;; The name as revealed to the projects importing this library
+ (preprocess
+  (pps ppx_deriving.show ppx_deriving.ord visitors.ppx))
+ (libraries yojson zarith easy_logging name_matcher_parser)
+ (modules
+  Collections
+  Expressions
+  ExpressionsUtils
+  GAst
+  GAstUtils
+  GAstOfJson
+  Identifiers
+  LlbcAst
+  LlbcAstUtils
+  LlbcOfJson
+  Logging
+  Meta
+  MetaUtils
+  NameMatcher
+  OfJsonBasic
+  PrintExpressions
+  PrintGAst
+  PrintLlbcAst
+  PrintUllbcAst
+  PrintTypes
+  PrintUtils
+  PrintValues
+  Scalars
+  StringUtils
+  Substitute
+  Types
+  TypesUtils
+  UllbcAst
+  UllbcAstUtils
+  UllbcOfJson
+  Utils
+  Values
+  ValuesUtils))
+
+(documentation
+ (package charon))
+
+(env
+ (dev
+  (flags
+   :standard
+   -safe-string
+   -g
+   ;-dsource
+   -warn-error
+   -5@8-11-14-33-20-21-26-27-39))
+ (release
+  (flags
+   :standard
+   -safe-string
+   -g
+   ;-dsource
+   -warn-error
+   -5@8-11-14-33-20-21-26-27-39)))
