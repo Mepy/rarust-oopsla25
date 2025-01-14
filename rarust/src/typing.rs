@@ -42,8 +42,7 @@ impl Context
             // todo: maybe we need NOT write undefined here
             // we write undefined only for local convenience of soundness proof
             // in practical implementation, we will recover soundness globally(across some eval/exec)
-            
-            // self.gamma.write(place, RichType::Undefined);
+            self.gamma.write(place, self.fun_group.lp.fresh_rtype(&rtype));
             rtype
         },
         }

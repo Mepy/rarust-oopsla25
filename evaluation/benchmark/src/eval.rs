@@ -47,17 +47,18 @@ fn sum2(l:&List) -> i32
 {
     sum_rec(l) + sum_loop(l)
 }
-fn rev_rec(l:&mut List, r:&mut List) 
+fn rev_rec(l:&mut List, r: List) -> List
 {
     match l 
     {
     | Nil => { 
         tick(1); /* 1 = match Nil */ 
+        r
     },
     | Cons(hd, tl) => {
         tick(3); /* 3 = match Cons + hd + tl */
-        tick(5); *r = Cons(*hd, Box::new(*r)); /* 5 = *r + Box::new + *hd + Cons + *r */
-        tick(1); rev_rec(&mut *tl, r); /* 1 = &mut tl */
+        tick(5); let r = Cons(*hd, Box::new(r)); /* 5 = *r + Box::new + *hd + Cons + *r */
+        tick(1); rev_rec(&mut *tl, r) /* 1 = &mut tl */
     }
     }
 }
@@ -85,9 +86,8 @@ fn rev_loop(l:&mut List)
 
 fn rev(l:&mut List)
 {
-    tick(1); let mut r = Nil;
-    tick(1); rev_rec(l, &mut r); /* 1 = &mut r */
-    tick(1); *l = r;
+    tick(3);
+    *l = rev_rec(l, Nil);
 }
 
 fn rev2(l:&mut List)
@@ -127,35 +127,36 @@ fn append(l:&mut List, x:i32)
     let end = end_m(l);
     tick(4); *end = Cons(x, Box::new(Nil)); /* 4 = Nil + Box::new + Cons + *end */
 }
-fn concat(l1:&mut List, l2:&mut List)
+fn concat(l1:&mut List, l2:List)
 {
     let mut x = Nil;
     let out = &mut &mut x;
     end_c(l1, out);
-    tick(2); **out = *l2; /* 2 = *l2 + *end */
-    tick(2); *l2 = Nil;  /* 2 = Nil + *l2 */
+    tick(2); **out = l2; /* 2 = ** */
+    tick(2); // keep consistent to the paper
 }
 
-fn dup(l:&mut List)
+fn dup(l:List) -> List
 {
     match l 
     {
     | Nil => {
         tick(1); /* 1 = match Nil */
+        Nil
     },
     | Cons(hd, tl) => {
         tick(3); /* 3 = match Cons + hd + tl */
-        tick(1); dup(&mut *tl); /* 1 = &mut tl */
-        tick(7); **tl = Cons(*hd, Box::new(**tl)); /* 7 = *hd + **tl + Box::new + Cons + **tl */
+        tick(1); /* 1 = &mut *tl */
+        tick(7); Cons(hd, Box::new(Cons(hd, Box::new(dup(*tl))))) /* 7 = *hd + **tl + Box::new + Cons + **tl */
+        
     }
     }
 }
 
-fn dup2(l:&mut List)
+fn dup2(l:List) -> List
 {
-    dup(&mut *l); dup(&mut *l);
+    dup(dup(l))
 }
-
 
 fn min(t:&Tree, d:i32) -> i32
 {
@@ -286,23 +287,24 @@ fn sum_rec_nlist(l:&NList) -> i32
     }
 }
 
-fn rev_rec_nlist(l:&mut NList, r:&mut NList)
+fn rev_rec_nlist(l:&mut NList, r:NList) -> NList
 {
     match l 
     {
     | None => { 
         tick(1); /* 1 = match None */ 
+        r
     },
     | Some(node) => {
         tick(2); /* 2 = match Some + node */
         // tick(1); let mut node = *node; 
         tick(4); /* 4 = *r + Box::new + node.value, *r */
-        *r = Some(Box::new(NListNode{
+        let r = Some(Box::new(NListNode{
             value : node.value, 
-            next : *r
+            next : r
         }));
         tick(1);
-        rev_rec_nlist(&mut node.next, r);
+        rev_rec_nlist(&mut node.next, r)
     }
     }
 }
