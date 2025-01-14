@@ -132,8 +132,7 @@ fn concat(l1:&mut List, l2:&mut List)
     let mut x = Nil;
     let out = &mut &mut x;
     end_c(l1, out);
-    let end = *out;
-    tick(2); *end = *l2; /* 2 = *l2 + *end */
+    tick(2); **out = *l2; /* 2 = *l2 + *end */
     tick(2); *l2 = Nil;  /* 2 = Nil + *l2 */
 }
 
@@ -280,7 +279,7 @@ fn sum_rec_nlist(l:&NList) -> i32
     },
     | Some(node) => { 
         tick(2); /* 2 = match Some + node */
-        tick(1); let node = *node; 
+        // tick(1); let node = *node; 
         /* 3 = node.value + &node.next + i32Add */
         tick(3); node.value + sum_rec_nlist(&node.next) 
     }
@@ -296,7 +295,7 @@ fn rev_rec_nlist(l:&mut NList, r:&mut NList)
     },
     | Some(node) => {
         tick(2); /* 2 = match Some + node */
-        tick(1); let node = *node; 
+        // tick(1); let mut node = *node; 
         tick(4); /* 4 = *r + Box::new + node.value, *r */
         *r = Some(Box::new(NListNode{
             value : node.value, 
