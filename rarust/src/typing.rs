@@ -425,8 +425,8 @@ impl Context
             | Match(place, branches, default) => {
                 let rtype = self.gamma.read(place);
                 // considering rtp or not
-                let rtp = self.fun_group.lp.fresh_rtype(&rtype); // prophecy for resource increase!
-                self.gamma.write(place, rtp);
+                // let rtp = self.fun_group.lp.fresh_rtype(&rtype); // prophecy for resource increase!
+                // self.gamma.write(place, rtp);
                 let rtype = match rtype {
                     | RichType::MR(_, rtype) => *rtype, 
                     | rtype => rtype,
