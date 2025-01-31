@@ -155,10 +155,11 @@ fn print_type(self:&mut Printer, typedecls:&Vec<TypeDecl>, ty:&Ty, rty:&RType) -
     }
 }
 
-pub fn print_signature(self:&mut Printer, typedecls:&Vec<TypeDecl>, function:&GFunDecl<Statement>, fun_sig:&FunSig) -> Result<()>
+pub fn print_signature(self:&mut Printer, cov:usize, coc:usize, typedecls:&Vec<TypeDecl>, function:&GFunDecl<Statement>, fun_sig:&FunSig) -> Result<()>
 {
     self.print_name(&function.name)?;
-    write!(self.file, " : ")?;
+    writeln!(self.file, " // |constraints| = {coc}"); // |var| = {cov} and 
+    write!(self.file, "\t: ")?;
     let Resource::Var(i) = fun_sig.delta else { unreachable!() };
     write!(self.file, "{}", self.solution[i.0])?;
     let Some(body) = &function.body else { unreachable!() };

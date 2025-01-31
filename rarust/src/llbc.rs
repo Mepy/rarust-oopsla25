@@ -40,7 +40,7 @@ impl LLBC
                 // if findex == tick_findex { continue; }
                 let fun_sig = &fun_group.fun_sigs[&findex];
                 let function = &self.functions[findex];
-                printer.print_signature(&self.types, function, fun_sig).unwrap();
+                printer.print_signature(fun_group.lp.var_size.0, fun_group.lp.constraints.len(), &self.types, function, fun_sig).unwrap();
             }
         }
         
@@ -221,7 +221,6 @@ impl FunGroup
         {
             unimplemented!("no solution")
         };
-        
         let solution = convertor.variables.into_iter().map(|v|{ solution.value(v) }).collect::<Vec<_>>();
         // eprintln!("solution = {:?}", solution);
         solution

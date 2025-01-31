@@ -77,14 +77,20 @@ We packed into the artifact the JSON format IR of `benchmark.llbc` and analysis 
 
 We only explain 4 functions for demonstration, and others are similar in `./benchmark.result`:
 ```
-sum_loop : 0 + l : & List[Nil=1(), Cons=6(Lit, Box(List))] -> Lit
+sum_loop // |constraints| = 54
+    : 0 + l : & List[Nil=1(), Cons=6(Lit, Box(List))] -> Lit
 
-sum_rec : 1 + l : & List[Nil=-0(), Cons=6(Lit, Box(List))] -> Lit
+sum_rec // |constraints| = 19
+    : 1 + l : & List[Nil=-0(), Cons=6(Lit, Box(List))] -> Lit
 
-find : 1 + t : & Tree[Leaf=0(), Node=8(Lit, Box(Tree), Box(Tree))] + x : Lit -> Lit
+find // |constraints| = 31
+    : 1 + t : & Tree[Leaf=0(), Node=8(Lit, Box(Tree), Box(Tree))] + x : Lit -> Lit
 
-rev : 4 + l : &mut (List[Nil=-0(), Cons=9(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
+rev // |constraints| = 71
+    : 4 + l : &mut (List[Nil=-0(), Cons=9(Lit, Box(List))], List[Nil=0(), Cons=0(Lit, Box(List))]) -> 0, ()
 ```
+
+`|constraints|` is the number of linear constraints during analysis of this function. 
 
 `sum_loop` is the sum function written with loop, and the resource consumption is $0+1\cdot|\text{Nil}| + 6\cdot|\text{Cons}|$, or $1+6 |l|$ where $|l|$ denotes the length of a list.
 
