@@ -23,7 +23,8 @@ Our experiment result is in `./benchmark.result`. Use `reproduce.sh` to reproduc
 │   │       ├── types.rs # benchmark types
 │   │       ├── eval.rs  # benchmark programs
 │   │       └── main.rs  # benchmark entry
-│   └── rrlib # the tick function rrlib::tick(i64)
+│   ├── rrlib # the tick function rrlib::tick(i64)
+│   └── RaRustInFlux # encoding in [Flux](https://github.com/flux-rs/flux)
 └── rarust
     └── src
         # whole program
